@@ -1,3 +1,3 @@
 #!/bin/bash
 
-nvim ~/.local/share/bookmarks.txt
+alacritty -e nvim ~/.local/share/bookmarks.txt
