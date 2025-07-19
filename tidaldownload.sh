@@ -1,4 +1,5 @@
 #!/bin/bash
+#nomenu
 
 for var in "$@"
 do

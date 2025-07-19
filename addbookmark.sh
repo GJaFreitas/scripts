@@ -1,4 +1,5 @@
 #!/bin/bash
+#nomenu
 
 save_file="$HOME/.local/share/bookmarks.txt"
 

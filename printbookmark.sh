@@ -1,7 +1,8 @@
 #!/bin/bash
+#nomenu
 
 save_file="$HOME/.local/share/bookmarks.txt"
-to_type=$(grep -v '^#' $save_file | dmenu -i -l 25 -fn Terminus:size10| cut -d ' ' -f 1)
+to_type=$(grep -v '^#' $save_file | wofi --dmenu -bi | cut -d ' ' -f 1)
 
 #If nothing was chosen
 [[ -z $to_type ]] && exit

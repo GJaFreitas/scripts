@@ -1,4 +1,5 @@
 #!/bin/bash
+#nomenu
 
 # If i disable notifications then return imediately
 [[ $(cat /home/bag/.local/share/bat_notif) = "no" ]] && exit

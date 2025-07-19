@@ -1,4 +1,5 @@
 #!/bin/bash
+#nomenu
 
 files=$(find ~/wall -type f)
 
