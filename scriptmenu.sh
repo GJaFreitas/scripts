@@ -12,10 +12,11 @@ do
 	[[ -z $(grep "#nomenu" "$script_path$script") ]] && runable+="$script" && runable+=$'\n'
 done
 
-echo -e "$runable" | wofi --dmenu -bni -p "Script to run: " > $tmpfile &
+echo -e "$runable" | rofi -theme "$HOME/.config/rofi/launchers/type-4/style-2.rasi" -dmenu -bni -p "Script to run: " > $tmpfile &
+
 
 sleep 0.1
-hyprctl dispatch focuswindow class:wofi
+hyprctl dispatch focuswindow class:rofi
 
 wait
 

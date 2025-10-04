@@ -1,0 +1,1 @@
+/home/bag/.config/rofi/launch.sh

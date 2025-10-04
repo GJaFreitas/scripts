@@ -1,20 +1,20 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #nomenu
 
-files=$(find ~/wall -type f)
+DIR="$HOME/Pictures/Wallpapers/" # Path to wallpapers directory
 
-for file in $files
-do 
-	filenames+=$(basename $file)
-	filenames+=$'\n'
-done
 
-chosen=$(echo "$filenames" | dmenu -l 10 -sf green -p "Wallpaper" -fn Terminus:size10)
+x=$(xrandr | grep "*" | sed 's/x/ /g' | awk -F " " '{print $1}' | sed 's/\ //g')
+y=$(xrandr | grep "*" | sed 's/x/ /g' | awk -F " " '{print $2}' | sed 's/\ //g')
+xl=$(echo "($x-500)/2" | bc)
+yl=$(echo "($y-500)/2" | bc)
+location=$(echo 500x500+$xl+$yl)
 
-# If nothing was chosen
-[[ -z $chosen ]] && exit
+walls=$(nsxiv -t -o -r -b -g $location $DIR | xargs)  # running sxiv in thumbnail mode.
+wall1=$(printf "%s" "$walls" | awk '{w = 1; for (--w; w >=0; w--){printf "%s\t",$(NF-w)}print ""}') # Only print the last marked Wallpaper
 
-chosen="/home/bag/wall/$chosen"
+# if no picture is marked in sxiv, exit.
+[ -z "$walls" ] && exit 0
 
-hellwal -i $chosen -m -b 0.1 &
-swww img $chosen --transition-step 20 --transition-fps 60 --transition-type center
+sh $HOME/scripts/set-wallpaper.sh "$wall1"
+notify-send "Changing wallpaper to $(basename $wall1)"
