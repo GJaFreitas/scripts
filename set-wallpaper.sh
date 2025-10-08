@@ -1,4 +1,5 @@
 #!/bin/bash
+#nomenu
 
 cp $1 "$HOME/.config/hypr/scheme/wallpaper"
 
